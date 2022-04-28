@@ -49,6 +49,7 @@ class Keyboard_Mouse(controller.Controller):
 		elif key == pyglet.window.key.LSHIFT: self.start_move(self.MoveMode.DOWN)
 
 		elif key == pyglet.window.key.LCTRL : self.start_modifier(self.ModifierMode.SPRINT)
+		elif key == pyglet.window.key.LSHIFT : self.start_modifier(self.ModifierMode.SNEAK)
 
 		elif key == pyglet.window.key.F: self.misc(self.MiscMode.FLY)
 		elif key == pyglet.window.key.G: self.misc(self.MiscMode.RANDOM)
@@ -72,3 +73,4 @@ class Keyboard_Mouse(controller.Controller):
 		elif key == pyglet.window.key.LSHIFT: self.end_move(self.MoveMode.DOWN)
 
 		elif key == pyglet.window.key.LCTRL : self.end_modifier(self.ModifierMode.SPRINT)
+		elif key == pyglet.window.key.LSHIFT : self.end_modifier(self.ModifierMode.SNEAK)

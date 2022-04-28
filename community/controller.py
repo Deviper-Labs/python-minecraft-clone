@@ -32,6 +32,7 @@ class Controller:
 
 	class ModifierMode(IntEnum):
 		SPRINT = 0
+		SNEAK = 1
 
 	def __init__(self, game):
 		self.game = game
@@ -118,7 +119,13 @@ class Controller:
 	def start_modifier(self, mode):
 		if mode == self.ModifierMode.SPRINT:
 			self.game.player.target_speed = player.SPRINTING_SPEED
+		elif mode == self.ModifierMode.SNEAK:
+			self.game.player.target_speed = player.SNEAKING_SPEED
+			self.game.player.sneaking = True
 
 	def end_modifier(self, mode):
 		if mode == self.ModifierMode.SPRINT:
 			self.game.player.target_speed = player.WALKING_SPEED
+		elif mode == self.ModifierMode.SNEAK:
+			self.game.player.target_speed = player.WALKING_SPEED
+			self.game.player.sneaking = False

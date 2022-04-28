@@ -4,8 +4,9 @@ import glm
 import options
 import chunk
 
-WALKING_SPEED = 4.317
-SPRINTING_SPEED = 7 # faster than in Minecraft, feels better
+WALKING_SPEED = 2
+SPRINTING_SPEED = 4 # faster than in Minecraft, feels better
+SNEAKING_SPEED = 0.5
 
 class Frustum:
 	left = glm.vec4(1.0)
@@ -40,8 +41,14 @@ class Player(entity.Entity):
 
 		# camera variables
 
+		self.HEIGHT = self.height
+
 		self.eyelevel = self.height - 0.2
+		self.sneakheight = self.height - 0.5
+		self.sneakeyelevel = self.sneakheight - 0.2
 		self.input = [0, 0, 0]
+
+		self.sneaking = False
 
 		self.target_speed = WALKING_SPEED
 		self.speed = self.target_speed
@@ -64,6 +71,13 @@ class Player(entity.Entity):
 			self.speed += (self.target_speed - self.speed) * delta_time * 20
 
 		multiplier = self.speed * (1, 2)[self.flying]
+
+		if self.sneaking:
+			self.height = self.sneakheight
+			self.eyelevel = self.sneakeyelevel
+		else:
+			self.height = self.HEIGHT
+			self.eyelevel = self.height - 0.2
 
 		if self.flying and self.input[1]:
 			self.accel[1] = self.input[1] * multiplier

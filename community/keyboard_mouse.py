@@ -46,7 +46,7 @@ class Keyboard_Mouse(controller.Controller):
 		elif key == pyglet.window.key.W: self.start_move(self.MoveMode.FORWARD)
 		elif key == pyglet.window.key.S: self.start_move(self.MoveMode.BACKWARD)
 		elif key == pyglet.window.key.SPACE : self.start_move(self.MoveMode.UP)
-		elif key == pyglet.window.key.LSHIFT: self.start_move(self.MoveMode.DOWN)
+		#elif key == pyglet.window.key.LSHIFT: self.start_move(self.MoveMode.DOWN)
 
 		elif key == pyglet.window.key.LCTRL : self.start_modifier(self.ModifierMode.SPRINT)
 		elif key == pyglet.window.key.LSHIFT : self.start_modifier(self.ModifierMode.SNEAK)
@@ -70,7 +70,7 @@ class Keyboard_Mouse(controller.Controller):
 		elif key == pyglet.window.key.W: self.end_move(self.MoveMode.FORWARD)
 		elif key == pyglet.window.key.S: self.end_move(self.MoveMode.BACKWARD)
 		elif key == pyglet.window.key.SPACE : self.end_move(self.MoveMode.UP)
-		elif key == pyglet.window.key.LSHIFT: self.end_move(self.MoveMode.DOWN)
+		#elif key == pyglet.window.key.LSHIFT: self.end_move(self.MoveMode.DOWN)
 
 		elif key == pyglet.window.key.LCTRL : self.end_modifier(self.ModifierMode.SPRINT)
 		elif key == pyglet.window.key.LSHIFT : self.end_modifier(self.ModifierMode.SNEAK)

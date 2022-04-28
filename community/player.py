@@ -44,7 +44,7 @@ class Player(entity.Entity):
 		self.HEIGHT = self.height
 
 		self.eyelevel = self.height - 0.2
-		self.sneakheight = self.height - 0.5
+		self.sneakheight = self.height - 1
 		self.sneakeyelevel = self.sneakheight - 0.2
 		self.input = [0, 0, 0]
 

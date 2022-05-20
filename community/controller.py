@@ -1,5 +1,7 @@
+import glob
 import random
 import player
+import pyglet
 import chunk
 import hit
 
@@ -36,6 +38,16 @@ class Controller:
 
 	def __init__(self, game):
 		self.game = game
+		self.audio = pyglet.media.Player()
+		self.audio.volume = 0.7
+		steps = [pyglet.media.load("audio/footsteps/walk1.mp3"),
+					pyglet.media.load("audio/footsteps/walk2.mp3"),
+					pyglet.media.load("audio/footsteps/walk3.mp3")]
+		self.audio.queue(steps)
+		self.audio.pause()
+		self.audio.loop = True
+		self.audio.standby = False
+		self.audio.next_time = 0
 
 	def interact(self, mode):
 		def hit_callback(current_block, next_block):
@@ -107,13 +119,16 @@ class Controller:
 		self.game.player.input[axis] = round(max(-1, min(self.game.controls[axis], 1)))
 
 	def start_move(self, mode):
+		self.audio.play()
 		axis = int((mode if mode % 2 == 0 else mode - 1) / 2)
 		self.game.controls[axis] += (-1 if mode % 2 == 0 else 1)
 		self.update_move(axis)
 
+
 	def end_move(self, mode):
 		axis = int((mode if mode % 2 == 0 else mode - 1) / 2)
 		self.game.controls[axis] -= (-1 if mode % 2 == 0 else 1)
+		self.audio.pause()
 		self.update_move(axis)
 
 	def start_modifier(self, mode):

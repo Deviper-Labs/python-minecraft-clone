@@ -5,8 +5,8 @@ import options
 import chunk
 
 WALKING_SPEED = 2
-SPRINTING_SPEED = 4 # faster than in Minecraft, feels better
-SNEAKING_SPEED = 0.5
+SPRINTING_SPEED = 4
+SNEAKING_SPEED = 0.6
 
 class Frustum:
 	left = glm.vec4(1.0)
@@ -44,7 +44,7 @@ class Player(entity.Entity):
 		self.HEIGHT = self.height
 
 		self.eyelevel = self.height - 0.2
-		self.sneakheight = self.height - 1
+		self.sneakheight = self.height - 0.5
 		self.sneakeyelevel = self.sneakheight - 0.2
 		self.input = [0, 0, 0]
 

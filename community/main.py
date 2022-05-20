@@ -132,11 +132,16 @@ Display: {gl.gl_info.get_renderer()}
 
 		# music stuff
 		logging.info("Loading audio")
-		try:
-			self.music = [pyglet.media.load(os.path.join("audio/music", file)) for file in os.listdir("audio/music") if os.path.isfile(os.path.join("audio/music", file))]
-		except:
-			self.music = []
-
+		self.music = []
+		"""
+		for file in os.listdir("audio/music"):
+			if os.path.isfile(os.path.join("audio/music", file)):
+				if '.ogg' in file:
+					self.music.append(pyglet.media.load(os.path.join("audio/music", file)))
+				else:
+					pass
+		"""
+		self.music.append(pyglet.media.load("audio/music/Haggstrom.ogg"))
 		self.media_player = pyglet.media.Player()
 		self.media_player.volume = 0.5
 
@@ -277,6 +282,7 @@ class Game:
 				major_version = 3, minor_version = 3,
 				depth_size = 16, sample_buffers=bool(options.ANTIALIASING), samples=options.ANTIALIASING)
 		self.window = Window(config = self.config, width = 852, height = 480, caption = "Minecraft clone", resizable = True, vsync = options.VSYNC)
+		self.window.set_icon(pyglet.image.load("logo.png"))
 
 	def run(self): 
 		pyglet.app.run()
